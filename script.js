@@ -13,18 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
             count += 1;
             if (count % 2 !== 0) {
                 el.classList.add("white");
-                for(let i=0;i<11;i++){
-                    if(Array.from(el.closest('.row').children).slice(i,i+5).filter(item=>item.classList.contains('white')).length===5){
-                        alert('Game over');
-                    }
-                }
                 let curCol=Array.from(el.classList)[0];
-                for(let j=0;j<11;j++){
-                    if(Array.from(document.querySelectorAll(`.${curCol}`)).slice(j,j+5).filter(item=>item.classList.contains('white')).length===5){
+                for(let i=0;i<11;i++){
+                    if(
+                        Array.from(el.closest('.row').children).slice(i,i+5).filter(item=>item.classList.contains('white')).length===5 ||
+                        Array.from(document.querySelectorAll(`.${curCol}`)).slice(i,i+5).filter(item=>item.classList.contains('white')).length===5
+                    ){
                         alert('Game over');
                     }
                 }
-                
                 // console.log(document.querySelectorAll(Array.from(el.classList)[0]));
                 // Array.from(el.closest('.row').classList)
                 // console.log(Array.from(document.querySelector('.row-1').children).filter(item => item.includes('white')));
@@ -41,14 +38,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // console.log(whitePo.map(item => item[0] - item[1]));
             } else {
                 el.classList.add("black");
-                for(let i=0;i<11;i++){
-                    if(Array.from(el.closest('.row').children).slice(i,i+5).filter(item=>item.classList.contains('black')).length===5){
-                        alert('Game over');
-                    }
-                }
                 let curCol=Array.from(el.classList)[0];
-                for(let j=0;j<11;j++){
-                    if(Array.from(document.querySelectorAll(`.${curCol}`)).slice(j,j+5).filter(item=>item.classList.contains('white')).length===5){
+                for(let i=0;i<11;i++){
+                    if(
+                        Array.from(el.closest('.row').children).slice(i,i+5).filter(item=>item.classList.contains('black')).length===5 ||
+                        Array.from(document.querySelectorAll(`.${curCol}`)).slice(i,i+5).filter(item=>item.classList.contains('black')).length===5
+                ){
                         alert('Game over');
                     }
                 }
@@ -57,7 +52,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 // blackPo.push([Array.from(el.classList)[0].split('-')[1], Array.from(el.closest('.row').classList)[0].split('-')[1]]);
                 // console.log(blackPo);
             }
-          
             // document.querySelectorAll('.row').forEach((item, index, array) => {
             //         console.log(Array.from(item.children).findIndex(array => array.includes('white')));
 
