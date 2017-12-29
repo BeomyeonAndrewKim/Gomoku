@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('click', e => {
             let curPo = { col: Number(Array.from(el.classList)[0].split('-')[1]), row: Number(Array.from(el.closest('.row').classList)[0].split('-')[1]) };
             let curCol = Array.from(el.classList)[0];
-
             if (el.classList.length >= 3) {
                 return false;
             } //같은 위치에 놓을시 false
@@ -110,9 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
 
             }
-            //count 변수 통해 번갈아가며 돌 놓기
-            console.log(Array.from(el.classList)[0].split('-')[1], Array.from(el.closest('.row').classList)[0].split('-')[1]);
-
         })
     })
 });
