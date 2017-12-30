@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     let count = 0;
+    let whiteWin = alert('White Win!');
+    let blackWin = alert('Black Win!');
 
     function finish() {
-        alert('Game over');
         document.querySelectorAll('.col').forEach(el => {
             el.classList.remove('white');
             el.classList.remove('black');
@@ -13,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('click', e => {
             let curPo = { col: Number(Array.from(el.classList)[0].split('-')[1]), row: Number(Array.from(el.closest('.row').classList)[0].split('-')[1]) };
             let curCol = Array.from(el.classList)[0];
+            console.log(curPo);
             if (el.classList.length >= 3) {
                 return false;
             } //같은 위치에 놓을시 false
@@ -25,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         Array.from(document.querySelectorAll(`.${curCol}`)).slice(i, i + 5).filter(item => item.classList.contains('white')).length === 5
                     ) {
                         finish();
+                        whiteWin;
                     }
                 }
                 let newArr = [];
@@ -40,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (let j = 0; j < 11; j++) {
                         if (newArr.slice(j, j + 5).filter(item => item.classList.contains('white')).length === 5) {
                             finish();
+                            whiteWin;
                         }
                     }
                 }
@@ -59,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (let m = 0; m < 11; m++) {
                         if (newArr2.slice(m, m + 5).filter(item => item.classList.contains('white')).length === 5) {
                             finish();
+                            whiteWin;
                         }
                     }
                 }
@@ -70,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         Array.from(document.querySelectorAll(`.${curCol}`)).slice(i, i + 5).filter(item => item.classList.contains('black')).length === 5
                     ) {
                         finish();
+                        blackWin;
                     }
                 }
                 let newArr = [];
@@ -85,6 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (let j = 0; j < 11; j++) {
                         if (newArr.slice(j, j + 5).filter(item => item.classList.contains('black')).length === 5) {
                             finish();
+                            blackWin;
                         }
                     }
                 }
@@ -104,6 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     for (let m = 0; m < 11; m++) {
                         if (newArr2.slice(m, m + 5).filter(item => item.classList.contains('black')).length === 5) {
                             finish();
+                            blackWin;
                         }
                     }
                 }
