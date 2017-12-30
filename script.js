@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('click', e => {
             let curPo = { col: Number(Array.from(el.classList)[0].split('-')[1]), row: Number(Array.from(el.closest('.row').classList)[0].split('-')[1]) };
             let curCol = Array.from(el.classList)[0];
+            console.log(curPo);
             if (el.classList.length >= 3) {
                 return false;
             } //같은 위치에 놓을시 false
