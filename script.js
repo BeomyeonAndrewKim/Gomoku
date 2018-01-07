@@ -22,9 +22,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     document.querySelectorAll('.col').forEach(el => {
         el.addEventListener('click', e => {
+            /*
+            `forEach` 메소드가 인덱스를 인자로 넘기므로, 그것을 이용해 curPo를 만들 수 있습니다. 그러면 코드가 조금 더 깔끔해졌을 것 같습니다.
+            예를 들어 아래와 같이 할 수 있습니다.
+            document.querySelectorAll('.row').forEach((rowEl, rowIndex) => {
+                document.querySelectorAll('.col').forEach((colEl, colIndex) => {
+                    ...
+            */
             let curPo = { col: Number(Array.from(el.classList)[0].split('-')[1]), row: Number(Array.from(el.closest('.row').classList)[0].split('-')[1]) };
             let curCol = Array.from(el.classList)[0];
             console.log(curPo);
+            /*
+            아래와 같이 체크를 하면 코드의 유지보수성이 나빠집니다.
+            예를 들어, 일주일 뒤에 `.col` 클래스를 갖는 모든 요소들에 클래스를 하나 더 추가해야 하는 상황이 발생했다면
+            아래 코드까지 같이 수정이 되어야 합니다. (3을 4로 고쳐야겠죠?)
+            따라서 아래 코드는 `el.classList.contains('white') || el.classList.contains('black')` 과 같이 수정하는 게 좋습니다.
+            */
             if (el.classList.length >= 3) {
                 return false;
             } //같은 위치에 놓을시 false
@@ -47,6 +60,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } //가로 세로 체크
             let newArr = [];
             leftCross = Math.abs(curPo.col - curPo.row);
+            /*
+            위에서 `let`을 통해 정의했던 변수 `i`는 `for` 구문 내에서만 유효하기 때문에,
+            아래 루프에서도 변수 이름을 `i`로 사용할 수 있습니다.
+            */
             for (let j = 15; j > leftCross; j--) {
                 if (curPo.col - curPo.row >= 0) {
                     newArr.push(Array.from(document.querySelector(`.row-${j-leftCross}`).children).find(item => item.classList.contains(`col-${j}`)));
